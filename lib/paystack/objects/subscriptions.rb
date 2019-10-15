@@ -21,6 +21,7 @@ class PaystackSubscriptions < PaystackBaseObject
 
 
   def PaystackSubscriptions.create(paystackObj, data)
+    puts "object #{paystackObj} #{data}"
     initPostRequest(paystackObj, "#{API::SUBSCRIPTION_PATH}", data)
   end
 

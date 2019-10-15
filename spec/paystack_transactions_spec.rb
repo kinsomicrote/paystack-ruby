@@ -2,18 +2,16 @@ require 'spec_helper'
 require 'paystack/objects/transactions.rb'
 require 'paystack.rb'
 
-public_test_key = "pk_test_ea7c71f838c766922873f1dd3cc529afe13da1c0"
-private_test_key = "sk_test_40e9340686e6187697f8309dbae57c002bb16dd0"
 	
 describe PaystackTransactions do
 	it "should return a valid transaction object" do
-		paystack = Paystack.new(public_test_key, private_test_key)
+		paystack = Paystack.new(ENV['public_test_key'], ENV['private_test_key'])
 		transactions = PaystackTransactions.new(paystack)
 		expect(transactions.nil?).to eq false
 	end
 
 	it "should return a list of transactions" do
-		paystack = Paystack.new(public_test_key, private_test_key)
+		paystack = Paystack.new(ENV['public_test_key'], ENV['private_test_key'])
 		transactions = PaystackTransactions.new(paystack)
 		expect(transactions.nil?).to eq false
 		list =  transactions.list(1)
@@ -22,7 +20,7 @@ describe PaystackTransactions do
 	end
 
 	it "should return a valid transaction hashset" do
-		paystack = Paystack.new(public_test_key, private_test_key)
+		paystack = Paystack.new(ENV['public_test_key'], ENV['private_test_key'])
 		transactions = PaystackTransactions.new(paystack)
 		expect(transactions.nil?).to eq false
 		list =  transactions.list(1)
@@ -38,7 +36,8 @@ describe PaystackTransactions do
 
 	it "should initialize a transaction and expect an authorization url" do
 		reference = Random.new_seed.to_s[0..9]
-		paystack = Paystack.new(public_test_key, private_test_key)
+
+		paystack = Paystack.new(ENV['public_test_key'], ENV['private_test_key'])
 		transactions = PaystackTransactions.new(paystack)
 		expect(transactions.nil?).to eq false
 		temp = transactions.initializeTransaction(
@@ -53,7 +52,7 @@ describe PaystackTransactions do
 	end
 
 	it "should successfully verify a transaction" do
-		paystack = Paystack.new(public_test_key, private_test_key)
+		paystack = Paystack.new(ENV['public_test_key'], ENV['private_test_key'])
 		transaction = PaystackTransactions.new(paystack)
 		expect(transaction.nil?).to eq false
 		list =  transaction.list(1)
@@ -67,7 +66,7 @@ describe PaystackTransactions do
 	end
 
 	it "should return a list of transaction totals" do
-		paystack = Paystack.new(public_test_key, private_test_key)
+		paystack = Paystack.new(ENV['public_test_key'], ENV['private_test_key'])
 		transaction = PaystackTransactions.new(paystack)
 		expect(transaction.nil?).to eq false
 		totals =  transaction.totals(1)
@@ -83,7 +82,7 @@ describe PaystackTransactions do
 		# if transaction successful, replace your reference with the value below	
 		reference = "2425847597"  
 
-		paystack = Paystack.new(public_test_key, private_test_key)
+		paystack = Paystack.new(ENV['public_test_key'], ENV['private_test_key'])
 		transactions = PaystackTransactions.new(paystack)
 		expect(transactions.nil?).to eq false
 

@@ -2,19 +2,18 @@ require 'spec_helper'
 require 'paystack/objects/transfers.rb'
 require 'paystack.rb'
 
-public_test_key = "pk_test_ea7c71f838c766922873f1dd3cc529afe13da1c0"
-private_test_key = "sk_test_40e9340686e6187697f8309dbae57c002bb16dd0"
+
 	
 describe PaystackTransfers do
 	it "should return a valid transfer object" do
-		paystack = Paystack.new(public_test_key, private_test_key)
+		paystack = Paystack.new(ENV['public_test_key'], ENV['private_test_key'])
 		transfers = PaystackTransfers.new(paystack)
 		expect(transfers.nil?).to eq false
 	end
 
 	it "should initialize a transfer and expect a transfer code" do
 		recipient_code = "RCP_213xswghvej0gzv" #manually generated recipient code to avoid errors
-		paystack = Paystack.new(public_test_key, private_test_key)
+		paystack = Paystack.new(ENV['public_test_key'], ENV['private_test_key'])
 		transfers = PaystackTransfers.new(paystack)
 		expect(transfers.nil?).to eq false
 		temp = transfers.initializeTransfer(
@@ -30,7 +29,7 @@ describe PaystackTransfers do
 	end
 
 	it "should return a list of transfers" do
-		paystack = Paystack.new(public_test_key, private_test_key)
+		paystack = Paystack.new(ENV['public_test_key'], ENV['private_test_key'])
 		transfers = PaystackTransfers.new(paystack)
 		expect(transfers.nil?).to eq false
 		list =  transfers.list(1)
@@ -39,7 +38,7 @@ describe PaystackTransfers do
 	end
 
 	it "should return a valid transfer hashset" do
-		paystack = Paystack.new(public_test_key, private_test_key)
+		paystack = Paystack.new(ENV['public_test_key'], ENV['private_test_key'])
 		transfers = PaystackTransfers.new(paystack)
 		expect(transfers.nil?).to eq false
 		list =  transfers.list(1)
@@ -54,7 +53,7 @@ describe PaystackTransfers do
 	end
 
 	it "should resend OTP to authorize a transfer" do
-		paystack = Paystack.new(public_test_key, private_test_key)
+		paystack = Paystack.new(ENV['public_test_key'], ENV['private_test_key'])
 		transfers = PaystackTransfers.new(paystack)
 		expect(transfers.nil?).to eq false
 		list =  transfers.list(1)
@@ -65,7 +64,7 @@ describe PaystackTransfers do
 	end
 
 	it "should disable OTP for transfers" do
-		paystack = Paystack.new(public_test_key, private_test_key)
+		paystack = Paystack.new(ENV['public_test_key'], ENV['private_test_key'])
 		transfer = PaystackTransfers.new(paystack)
 		expect(transfer.nil?).to eq false
 		hash = transfer.disableOtp
@@ -74,7 +73,7 @@ describe PaystackTransfers do
 	end
 
 	it "should enable OTP for transfers" do
-		paystack = Paystack.new(public_test_key, private_test_key)
+		paystack = Paystack.new(ENV['public_test_key'], ENV['private_test_key'])
 		transfer = PaystackTransfers.new(paystack)
 		expect(transfer.nil?).to eq false
 		hash = transfer.enableOtp

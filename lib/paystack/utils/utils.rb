@@ -56,6 +56,7 @@ module Utils
 	def Utils.hasYearPassed(year)
 		return year < Time.new.year
 	end
+
 	def Utils.hasMonthPassed(year, month)
 		t = Time.new
 		return hasYearPassed(year) || year == t.year && month < (t.month)
